@@ -1,11 +1,11 @@
-# Pooled Cell Painting Data and Processing
+# Pooled Cell Painting Experiment Repository Template
 
 This repository was derived from a [template repository](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/) located at https://github.com/broadinstitute/pooled-cp-profiling-template.
 The purpose of the repository is to weld together a versioned data processing pipeline with versioned processed output data for a single Pooled Cell Painting experiment.
 
-![Welding Structure](media/pipeline_weld.png)
-
 **AFTER GENERATING A NEW REPO, CHANGE OR DELETE THESE DETAILS**
+
+<img src="https://raw.githubusercontent.com/broadinstitute/pooled-cp-profiling-template/0c6016ea085b66e670406103cfa18b8ed45a36b1/media/pipeline_weld.png", width=100>
 
 ## Setup
 
