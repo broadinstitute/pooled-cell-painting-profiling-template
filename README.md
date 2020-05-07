@@ -3,7 +3,7 @@
 This repository was derived from a [template repository](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/) located at https://github.com/broadinstitute/pooled-cp-profiling-template.
 The purpose of the repository is to weld together a versioned data processing pipeline with versioned processed output data for a single Pooled Cell Painting experiment.
 
-**AFTER GENERATING A NEW REPO, CHANGE OR DELETE THESE DETAILS**
+**AFTER GENERATING A NEW REPO, CHANGE OR DELETE ALL NONSPECIFIC DETAILS**
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/broadinstitute/pooled-cp-profiling-template/0c6016ea085b66e670406103cfa18b8ed45a36b1/media/pipeline_weld.png" width="600">
@@ -13,13 +13,17 @@ The purpose of the repository is to weld together a versioned data processing pi
 
 To correctly initialize the repository, we need to perform several manual steps.
 
-### Step 1: Fork Our Pooled Cell Painting Painting Recipe
+### Step 0: Create a New Repository **using this Repository as a Template**
+
+By spinning up a new repo using this repo as a template, you will retain all code, configuration files, computational environments, and directory structure that a standard Pooled Cell Painting workflow expects and produces.
+
+### Step 1: Fork The Pooled Cell Painting Painting Recipe
 
 We first want to [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the official pooled cell profiling recipe located at https://github.com/broadinstitute/pooled-cp-profiling-recipe.
 
-**Result:** The fork creates a copy of a recipe repository.
-**Goals:** 1) Remove the connection to official recipe updates to avoid unintended weld versioning reversal; 2) Enable independent updates to fork code that does not impact official recipe.
-**Execution:** See [forking instructions](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and the image below.
+* **Result:** The fork creates a copy of a recipe repository.
+* **Goals:** 1) Remove the connection to official recipe updates to avoid unintended weld versioning reversal; 2) Enable independent updates to fork code that does not impact official recipe.
+* **Execution:** See [forking instructions](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and the image below.
 
 ![Step 1: Fork](media/step1_forkrecipe.png)
 
@@ -27,9 +31,9 @@ We first want to [fork](https://help.github.com/en/github/getting-started-with-g
 
 Next, we will create a [submodule](https://gist.github.com/gitaarik/8735255) in this repo.
 
-**Result:** Adding a submodule initiates the weld.
-**Goals:** 1) Link the processing code (recipe) with the data (current repo); 2) Require a manual step to update the recipe to enable asynchronous development.
-**Execution:** See below
+* **Result:** Adding a submodule initiates the weld.
+* **Goals:** 1) Link the processing code (recipe) with the data (current repo); 2) Require a manual step to update the recipe to enable asynchronous development.
+* **Execution:** See below
 
 ```bash
 # In your terminal, clone the repository you just created (THIS REPO)
@@ -46,13 +50,13 @@ git submodule add https://github.com/$USER/pooled-cp-profiling-recipe.git pooled
 
 Refer to ["Adding a submodule"](https://gist.github.com/gitaarik/8735255#adding-a-submodule) for more details.
 
-### Step 3: Commit the submodule
+### Step 3: Commit the Submodule
 
 Lastly, we will [commit](https://help.github.com/en/desktop/contributing-to-projects/committing-and-reviewing-changes-to-your-project#about-commits) the submodule to github.
 
-**Result:** Committing this change finalizes the weld.
-**Goals:** 1) Track the submodule (recipe) version with the current repository.
-**Execution:** See below
+* **Result:** Committing this change finalizes the weld.
+* **Goals:** 1) Track the submodule (recipe) version with the current repository.
+* **Execution:** See below
 
 ```bash
 # Add, commit, and push the submodule contents
