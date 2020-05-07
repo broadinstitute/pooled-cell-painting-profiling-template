@@ -6,7 +6,7 @@ The purpose of the repository is to weld together a versioned data processing pi
 **AFTER GENERATING A NEW REPO, CHANGE OR DELETE ALL NONSPECIFIC DETAILS**
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/broadinstitute/pooled-cp-profiling-template/0c6016ea085b66e670406103cfa18b8ed45a36b1/media/pipeline_weld.png" width="600">
+<img src="https://raw.githubusercontent.com/broadinstitute/pooled-cp-profiling-template/a57cb7f9e36b89ff56acf094f18ca06b1a53b719/media/pipeline_weld.png" width="500">
 </p>
 
 ## Setup
