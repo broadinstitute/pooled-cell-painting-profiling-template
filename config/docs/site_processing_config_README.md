@@ -1,6 +1,10 @@
-Detailed information on how to customize site_processing_config.yaml for each experiment.  
+# Documentation: Site Processing Module Configuration
 
-When editing the .yaml make sure to maintain dashes and indentations. (When information is added on the same line, it makes a dictionary where the value is a string. When there are multiple lines the value is a list with string elements.)
+Detailed information on how to customize the `site_processing_config.yaml` for each Pooled Cell Painting experiment.  
+
+When editing the `.yaml` make sure to maintain dashes and indentations. 
+(When information is added on the same line, it makes a dictionary where the value is a string. 
+When there are multiple lines the value is a list with string elements.)
 
 ## master_config  
 *These settings are passed to a separate config file to give it information about this config file. Do not edit these.*  
@@ -14,12 +18,12 @@ e.g.* 20190919_6W_CP074A
 `project_dir:` *This is the master folder that contains your input data. It is one level up from the project folder.  
 e.g.* /Users/gway/work/projects/
 
-
 `categorize_cell_quality:` *The cell categorization method you would like to use. The methods are described in cell_quality_utils.py.  
 e.g.* simple  
 *e.g.* simple_plus
 
-`sites_per_image_grid_side:` *The number of images making one side of the square  grid of images being processed. If there are 100 input images then:  
+`sites_per_image_grid_side:` *The number of images making one side of the square grid of all images being processed.
+If there are 100 input images then:  
 e.g.* 10  
 
 `compartments:` *The cellular compartments measured in the cell painting experiment. Default cell painting compartments are:  
@@ -32,7 +36,10 @@ e.g.*
     - Mito
 
 `parent_cols:`  
-*Enter every parent object/s for every compartment listed in compartments above (you may need to add additional key pairs for additional compartments beyond the default cells and cytoplasm e.g. for additional compartments beyond default imaged by SABER). Parent refers to relationship in order of identification. Generally, nuclei are identified first so they do not have parents. The parent columns can be found by searching the Compartment.csv files for columns following the format "Parent_Compartment."*  
+*Enter every parent object/s for every compartment listed in compartments above (you may need to add additional key pairs for additional compartments beyond the default cells and cytoplasm e.g. for additional compartments beyond default imaged by SABER).
+Parent refers to relationship in order of identification.
+Generally, nuclei are identified first so they do not have parents.
+The parent columns can be found by searching the Compartment.csv files for columns following the format "Parent_Compartment."*  
 `cells:` *Generally, nuclei are used to identify cells as a secondary object so the only parent object a cell will have is nuclei.  
 e.g.*   
     - Parent_Nuclei  
@@ -44,20 +51,26 @@ e.g.*
 e.g.*  
     - Parent_Cells  
 
-`id_cols:`*All columns necessary for parsing objects. Objects are identified and numbered on a per-image basis. Therefore, generally both image number and object number are needed to parse objects.  
+`id_cols:`*All columns necessary for parsing objects.
+Objects are identified and numbered on a per-image basis.
+Therefore, generally both image number and object number are needed to parse objects.  
 e.g.*    
     - ImageNumber  
     - ObjectNumber
 
-`control_barcodes:`*The name/s used for non-targeting sgRNA's.    
+`control_barcodes:`*The name/s used for non-targeting sgRNA's.
+If there are more control barcodes, add them here.
 e.g.*  
     - NT
 
-`ignore_files:`*Ignore any files with these names. List the complete file name. Default is .DS_Store because Macs make hidden files with that name.  
+`ignore_files:`*Ignore any files with these names.
+List the complete file name.
+Default is `.DS_Store` because Macs make hidden files with that name.  
 e.g.*  
     - .DS_Store
 
 ## prefilter:
+
 `perform:` *Do you want to perform 0.prefilter-features step? Set to* true *or* false.
 
 `example_site:` *The name of a single example folder containing data from a single site that is found in project_dir/project/batch.  
@@ -74,6 +87,7 @@ e.g.*
     - Resize *(Resized images are used for visual output and not measurements.)*
 
 ## process-spots:
+
 `perform:` *Do you want to perform 1.process-spots step? Set to* true *or* false.
 
 `output_basedir:` *Name the folder where you would like this step to output files. e.g.* data
@@ -111,6 +125,7 @@ Typical e.g.*
     - Bad
 
 ## process-cells:
+
 `perform:` *Do you want to perform 2.process-cells step? Set to* true *or* false.
 
 `prefilter-features:` *Do you want to use the prefiltering that you created in step 0? Set to* true *or* false.
@@ -123,7 +138,10 @@ Typical e.g.*
 *CellProfiler outputs measurements for each compartment in a separate .csv. In this step we merge them together. merge_columns are the columns used to merge the .csvs.*  
 `image_column:` *The name of the column that describes the image number. e.g.* ImageNumber  
 `linking_compartment:` *The compartment used to link other compartments. e.g.* Cytoplasm  
-`linking_columns:`*Column names that link your parent compartment to other compartments. You will need to set a column name for each compartment set in core: compartments. e.g.*  
+`linking_columns:`*Column names that link your parent compartment to other compartments.
+You will need to set a column name for each compartment set in core: compartments.
+The column names listed, must also exist in the data for the compartment listed in `linking_compartment`.
+e.g.*  
 `cells:` Metadata_Cytoplasm_Parent_Cells  
 `nuclei:` Metadata_Cytoplasm_Parent_Nuclei  
 `metadata_linking_columns:` *Column names that link ... e.g.*  
