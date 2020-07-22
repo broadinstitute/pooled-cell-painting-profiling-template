@@ -1,0 +1,101 @@
+---
+master_config:
+  step: preprocess-sites
+  pipeline: Pooled Cell Painting
+  project_tag: 2018_11_20_Periscope_Calico
+---
+core:
+  batch: 20190919_6W_CP074A
+  project_dir: /Users/gway/work/projects/
+  output_dir: data
+  categorize_cell_quality: simple
+  sites_per_image_grid_side: 10
+  compartments:
+    - Cells
+    - Nuclei
+    - Cytoplasm
+  parent_cols:
+    cells:
+      - Parent_Nuclei
+    cytoplasm:
+      - Parent_Nuclei
+      - Parent_Cells
+    spots:
+      - Parent_Cells
+  id_cols:
+    - ImageNumber
+    - ObjectNumber
+  control_barcodes:
+    - NT
+  ignore_files:
+    - .DS_Store
+---
+prefilter:
+  perform: true
+  example_site: CP074A_A1-Site_1
+  output_basedir: data
+  flag_cols:
+    - Barcode
+    - Location
+    - Count
+    - Resize
+---
+process-spots:
+  perform: true
+  output_basedir: data
+  barcode_cols:
+    - Barcode_MatchedTo_Barcode
+  gene_cols:
+    - Barcode_MatchedTo_GeneCode
+  location_cols:
+    - Location_Center_X
+    - Location_Center_Y
+  spot_score_cols:
+    - Barcode_MatchedTo_Score
+  foci_cols:
+    - Barcode_BarcodeCalled
+    - Barcode_MatchedTo_ID
+  cell_filter:
+    - Perfect
+    - Great
+---
+process-cells:
+  perform: true
+  prefilter-features: true
+  output_basedir: data
+  sort_col: Metadata_Cells_ObjectNumber
+  merge_columns:
+    image_column: ImageNumber
+    linking_compartment: Cytoplasm
+    linking_columns:
+      cells: Metadata_Cytoplasm_Parent_Cells
+      nuclei: Metadata_Cytoplasm_Parent_Nuclei
+    metadata_linking_columns:
+      - Metadata_Foci_site
+      - Metadata_Cells_ObjectNumber
+  metadata_merge_columns:
+    foci_cols:
+      - Metadata_Foci_ImageNumber
+      - Metadata_Foci_Parent_Cells
+    cell_cols:
+      - Metadata_Cells_ImageNumber
+      - Metadata_Cells_ObjectNumber
+    cell_quality_col: Metadata_Foci_Cell_Quality
+  foci_site_col: Metadata_Foci_site
+---
+summarize-cells:
+  perform: true
+  output_resultsdir: results
+  output_figuresdir: figures
+---
+summarize-plate:
+  perform: true
+  correlation_threshold: .2
+  painting_image_names:
+    - Pre_ConA
+    - Pre_DAPI_Painting
+    - Pre_Mito
+    - Pre_Phalloidin
+    - Pre_WGA
+  barcoding_cycles: 10
+  barcoding_prefix: CorrCycle
