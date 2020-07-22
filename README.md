@@ -66,11 +66,3 @@ git commit -m 'finalizing the recipe weld'
 git push
 ```
 
-## Experimental Details
-
-| Variable | Response |
-| :------- | :------- |
-| Experiment Name | CP074A |
-| Microscope | Guy Fieri |
-| Cell Line | A549 |
-| Perturbation | Whole Genome CRISPR |
