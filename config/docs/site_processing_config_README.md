@@ -2,9 +2,12 @@
 
 Detailed information on how to customize the `site_processing_config.yaml` for each Pooled Cell Painting experiment.  
 
+For more information on `.yaml`, read the [YAML page on Wikipedia](https://en.wikipedia.org/wiki/YAML).
+
+Structure is very important in `.yaml` files.
 When editing the `.yaml` make sure to maintain dashes and indentations.  
 (When information is added on the same line, it makes a dictionary where the value is a string.  
-When there are multiple lines the value is a list with string elements.)
+When there are multiple lines, the value is a list with string elements.)
 
 ## master_config:  
 *These settings are passed to a separate config file to give it information about this config file.  
