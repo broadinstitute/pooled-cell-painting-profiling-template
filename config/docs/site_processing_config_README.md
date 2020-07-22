@@ -149,20 +149,18 @@ e.g.* Metadata_Cells_ObjectNumber
 
 `merge_columns:`
 *CellProfiler outputs measurements for each compartment in a separate .csv.  
-In this step we merge them together using the merge_columns.*  
-+ `image_column:` *The name of the column that describes the image number.  
+In this step we merge them together using the merge_columns.*
+- `image_column:` *The name of the column that describes the image number.  
 e.g.* ImageNumber  
-+`linking_compartment:` *The compartment used to link other compartments.  
+- `linking_compartment:` *The compartment used to link other compartments.  
 e.g.* Cytoplasm  
-+`linking_columns:`*Column names that link your parent compartment to other compartments.  
+- `linking_columns:`*Column names that link your parent compartment to other compartments.  
 You will need to set a column name for each compartment set in core: compartments.  
 The column names listed, must also exist in the data for the compartment listed in `linking_compartment`.*   
   - `cells:` *e.g.* Metadata_Cytoplasm_Parent_Cells  
   - `nuclei:` *e.g.* Metadata_Cytoplasm_Parent_Nuclei
-+ `metadata_linking_columns:` *Column names that link ...   
-e.g.*
-- Metadata_Foci_site  
-- Metadata_Cells_ObjectNumber  
+- `metadata_linking_columns:` *Column names linking spot metadata with single cell morphology readouts  
+e.g.* Metadata_Foci_site, Metadata_Cells_ObjectNumber  
 
 `metadata_merge_columns:`  
 *These are the columns that are used to link foci data to compartment data.*   
