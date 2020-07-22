@@ -1,9 +1,38 @@
-# Pooled Cell Painting Experiment Repository Template
+# Pooled Cell Painting Experiment Repository Template :hammer_and_wrench:
 
 This repository was derived from a [template repository](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/) located at https://github.com/broadinstitute/pooled-cp-profiling-template.
 The purpose of the repository is to weld together a versioned data processing pipeline with versioned processed output data for a single Pooled Cell Painting experiment.
 
-**AFTER GENERATING A NEW REPO, CHANGE OR DELETE ALL NONSPECIFIC DETAILS**
+## Setup computational environment
+
+First, install [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/).
+We use conda as an environment manager.
+
+```bash
+# Install computational environment
+conda env create --force --file environment.yml
+
+# Initialize the environment
+conda activate pooled-cell-painting
+```
+
+## Perform the weld
+
+The welding procedure is a three-step process.
+
+1. Activate conda environment (see above)
+2. Manually update the configuration yaml documents for your specific experiment
+  * Yaml documents with reasonable default values are available in the [config/](config/) folder.
+    * Do not change the location of these files.
+  * Additional documentation for each of the parameters is available in the [config/docs/](config/docs/) folder.
+3. Execute `weld.sh` (see below)
+
+```bash
+# After performing steps 1 and 2 above, perform step 3:
+./weld.sh
+```
+
+## **AFTER GENERATING A NEW REPO, CHANGE OR DELETE ALL NONSPECIFIC DETAILS**
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/broadinstitute/pooled-cp-profiling-template/a57cb7f9e36b89ff56acf094f18ca06b1a53b719/media/pipeline_weld.png" width="500">
@@ -65,4 +94,3 @@ git add .gitmodules
 git commit -m 'finalizing the recipe weld'
 git push
 ```
-
