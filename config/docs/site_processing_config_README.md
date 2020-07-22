@@ -4,7 +4,7 @@ Detailed information on how to customize the `site_processing_config.yaml` for e
 
 For more information on `.yaml`, read the [YAML page on Wikipedia](https://en.wikipedia.org/wiki/YAML).
 
-Structure is very important in `.yaml` files.
+Structure is very important in `.yaml` files.  
 When editing the `.yaml` make sure to maintain dashes and indentations.  
 (When information is added on the same line, it makes a dictionary where the value is a string.  
 When there are multiple lines, the value is a list with string elements.)
