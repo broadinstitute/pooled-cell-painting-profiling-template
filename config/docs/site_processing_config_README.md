@@ -159,8 +159,6 @@ You will need to set a column name for each compartment set in core: compartment
 The column names listed, must also exist in the data for the compartment listed in `linking_compartment`.*   
   - `cells:` *e.g.* Metadata_Cytoplasm_Parent_Cells  
   - `nuclei:` *e.g.* Metadata_Cytoplasm_Parent_Nuclei
-- `metadata_linking_columns:` *Column names linking spot metadata with single cell morphology readouts  
-e.g.* Metadata_Foci_site, Metadata_Cells_ObjectNumber  
 
 `metadata_merge_columns:`  
 *These are the columns that are used to link foci data to compartment data.*   
