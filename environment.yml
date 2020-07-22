@@ -1,4 +1,4 @@
-name: pooled-cp
+name: pooled-cell-painting
 channels:
 - conda-forge
 dependencies:
@@ -17,3 +17,5 @@ dependencies:
 - conda-forge::seaborn=0.10.1
 - conda-forge::black=19.10b0
 - conda-forge::nb_black=1.0.7
+- pip:
+  - git+https://github.com/cytomining/pycytominer@dd064c2185435e19541bafa7c976d55da15cf09e
