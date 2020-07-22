@@ -22,9 +22,9 @@ The welding procedure is a three-step process.
 
 1. Activate conda environment (see above)
 2. Manually update the configuration yaml documents for your specific experiment
-  * Yaml documents with reasonable default values are available in the [config/](config/) folder.
-    * Do not change the location of these files.
-  * Additional documentation for each of the parameters is available in the [config/docs/](config/docs/) folder.
+    * Yaml documents with reasonable default values are available in the [config/](config/) folder.
+      * Do not change the location of these files.
+    * Additional documentation for each of the parameters is available in the [config/docs/](config/docs/) folder.
 3. Execute `weld.sh` (see below)
 
 ```bash
