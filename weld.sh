@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Perform the data pipeline welding procedure
-# This will link together a versioned processing pipeline (recipe) with versioned data
+# Perform the data pipeline welding procedure.
+# This links together a versioned processing pipeline (recipe) with versioned data.
 #
 # Execution
 # To perform the weld, edit the configuration files in the config/ folder for the
