@@ -9,3 +9,8 @@ The purpose of the repository is to weld together a versioned data processing pi
 <figcaption>Data Pipeline Welding is the process of creating a new repository for each dataset within a Pooled Cell Painting project. The pooled-cell-painting-profiling-recipe contains the data processing pipeline. The user forks the recipe and can then edit their fork in a versioned manner. The pooled-cell-painting-profiling-template (this repo) contains the config files that must be edited for each dataset and therefore also need to be versioned. The fork of the recipe is added to the dataset-specific repo as a submodule. The code in the recipe can then be run and output morphology profiles that are completely versioned. </figcaption>
 </figure>
 </p>
+
+A note about terminology:  
+A `batch` is the data pipeline welding unit. As the pipeline is currently written, a `batch` is a single plate of data and may also be referred to as a `dataset`.
+An `experiment` is designed around a specific question and may contain single or multiple batches, depending on the experimental design.
+A `project` is an encompassing term and may contain any number of experiments (and therefore any number of batches).

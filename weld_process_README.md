@@ -123,7 +123,7 @@ Data is processed and figures and data are output.
 ### Execution:
 
 1. Activate conda environment. (`conda activate pooled-cell-painting`)
-2. Manually update the configuration yaml documents for your specific experiment.
+2. Manually update the configuration yaml documents for your specific batch.
     * Yaml documents with reasonable default values are available in the [config/](config/) folder.  
     * Do NOT change the location of the .yaml files.  
     * Additional documentation for each of the parameters is available in the [config/docs/](config/docs/) folder.  
