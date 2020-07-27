@@ -1,52 +1,76 @@
-The following are the weld process steps to perform with each dataset you analyze.  
+# Data pipeline welding: Processing steps
 
 For a general overview of the pipeline welding process, see the [repo README](README.md).  
 For the setup steps that need to be performed once at the start of a project, see the [setup REAME](setup_README.md).  
 
-### Step 0: Update Your Forked Recipe (Optional)
-* **Result:**  
+## Step 0: Update Your Forked Recipe (Optional)
+### Result:
+
 Updates (or reverts) your recipe to include any desired changes.
-* **Goal:**  
-1) Allow you to make changes to your recipe from dataset to dataset (or batch to batch).
-* **Execution:**  
-If you would like your recipe to include any updates to the official recipe:  
-```
+
+### Goal:
+
+1. Allows you to make changes to your recipe from dataset to dataset (or batch to batch).
+
+### Execution: 
+
+If you would like your recipe to include any updates to the official recipe:
+
+```bash
 git fetch upstream
 git checkout master
 git merge upstream/master
 git push
 ```
-If you would like your recipe to include any updates that you have made:  
-```
+
+If you would like your recipe to include any updates that you have made: 
+
+```bash
 git checkout UPDATED-BRANCH
 ```
+
 or
-```
+
+```bash
 git checkout <commit_hash>
 ```
 
-### Step 1: Create a New Repository **Using This Repository as a Template**
+## Step 1: Create a New Repository **Using This Repository as a Template**
 
-* **Result:**  
+### Result:
+  
 A repository for each dataset/batch.
-* **Goal:**  
-1) Retain all code, configuration files, computational environments, and directory structure that a standard Pooled Cell Painting workflow expects and produces.
-* **Execution:**  
+
+### Goal:
+
+1. Retain all code, configuration files, computational environments, and directory structure that a standard Pooled Cell Painting workflow expects and produces.
+
+### Execution:
+
 Click "Use this template".
+
 ![Use_this_template](media/use_this_template.png)
+
 Enter a name for your new repository that includes your batch name and click "Create repository from template".
+
 ![New_Repo](media/new_repo_from_template.png)
 
-### Step 2: Create a Submodule of the Forked Recipe Inside the New Repository
+## Step 2: Create a Submodule of the Forked Recipe Inside the New Repository
 
 Next, we create a [submodule](https://gist.github.com/gitaarik/8735255) in the repository we just created.
 
-* **Result:**  
+### Result:
+ 
 Adding a submodule initiates the weld.  
-* **Goals:**
-1) Link the processing code (recipe) with the data (current repo).  
-2) Require a manual step to update the recipe to enable asynchronous development.  
-* **Execution:** See below
+
+### Goals:
+
+1. Link the processing code (recipe) with the data (current repo).  
+2. Require a manual step to update the recipe to enable asynchronous development.
+
+### Execution:
+
+See below:
 
 ```bash
 # In your terminal, clone the repository you just created (THIS REPO)
@@ -63,16 +87,21 @@ git submodule add https://github.com/$USER/pooled-cp-profiling-recipe.git pooled
 
 Refer to ["Adding a submodule"](https://gist.github.com/gitaarik/8735255#adding-a-submodule) for more details.
 
-### Step 3: Commit the Submodule
+## Step 3: Commit the Submodule
 
 Lastly, we [commit](https://help.github.com/en/desktop/contributing-to-projects/committing-and-reviewing-changes-to-your-project#about-commits) the submodule to github.
 
-* **Result:**  
-Committing this change finalizes the weld.  
-* **Goal:**  
-1) Track the submodule (recipe) version with the current repository.
-* **Execution:**  
-See below
+### Result:
+
+Committing this change finalizes the weld initialization.
+
+### Goal:
+
+1. Track the submodule (recipe) version with the current repository.
+
+### Execution:
+
+See below:
 
 ```bash
 # Add, commit, and push the submodule contents
@@ -83,20 +112,22 @@ git push
 ```
 
 ## Step 4: Perform the Weld
-* **Result:**  
+### Result:
+ 
 Data is processed and figures and data are output.
-* **Goal:**  
-1) Track the submodule (recipe) version with the current repository.
-* **Execution:**  
-1) Activate conda environment.
-```
-conda activate pooled-cell-painting
-```
-2) Manually update the configuration yaml documents for your specific experiment.
-Yaml documents with reasonable default values are available in the [config/](config/) folder.  
-Do NOT change the location of the .yaml files.  
-Additional documentation for each of the parameters is available in the [config/docs/](config/docs/) folder.  
-3) Execute `weld.sh` (see below)
+
+### Goal:
+
+1.  Track the submodule (recipe) version with the current data repository.
+
+### Execution:
+  
+1. Activate conda environment. (`conda activate pooled-cell-painting`)
+2. Manually update the configuration yaml documents for your specific experiment.
+    * Yaml documents with reasonable default values are available in the [config/](config/) folder.  
+    * Do NOT change the location of the .yaml files.  
+    * Additional documentation for each of the parameters is available in the [config/docs/](config/docs/) folder.  
+3. Execute `weld.sh` (see below)
 
 ```
 bash

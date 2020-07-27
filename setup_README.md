@@ -20,12 +20,17 @@ conda activate pooled-cell-painting
 
 We first want to [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the official pooled cell profiling recipe located at https://github.com/broadinstitute/pooled-cp-profiling-recipe.
 
-* **Result:**  
+### Result:
+
 The fork creates a copy of a recipe repository.  
-* **Goals:**  
-1) Remove the connection to official recipe updates to avoid unintended weld versioning reversal.  
-2) Enable independent updates to fork code that does not impact official recipe.  
-* **Execution:**  
+
+### Goals:
+
+1. Remove the connection to the official recipe updates to avoid unintended weld versioning reversal.  
+2. Enable independent updates to fork code that does not impact official recipe.  
+
+### Execution:
+
 See [forking instructions](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and the image below.
 
 ![Step 1: Fork](media/step1_forkrecipe.png)
