@@ -12,7 +12,7 @@ Updates (or reverts) your recipe to include any desired changes.
 
 1. Allows you to make changes to your recipe from dataset to dataset (or batch to batch).
 
-### Execution: 
+### Execution:
 
 If you would like your recipe to include any updates to the official recipe:
 
@@ -23,7 +23,7 @@ git merge upstream/master
 git push
 ```
 
-If you would like your recipe to include any updates that you have made: 
+If you would like your recipe to include any updates that you have made:
 
 ```bash
 git checkout UPDATED-BRANCH
@@ -38,7 +38,7 @@ git checkout <commit_hash>
 ## Step 1: Create a New Repository **Using This Repository as a Template**
 
 ### Result:
-  
+
 A repository for each dataset/batch.
 
 ### Goal:
@@ -60,7 +60,7 @@ Enter a name for your new repository that includes your batch name and click "Cr
 Next, we create a [submodule](https://gist.github.com/gitaarik/8735255) in the repository we just created.
 
 ### Result:
- 
+
 Adding a submodule initiates the weld.  
 
 ### Goals:
@@ -107,13 +107,13 @@ See below:
 # Add, commit, and push the submodule contents
 git add pooled_cp_profiling_recipe
 git add .gitmodules
-git commit -m 'finalizing the recipe weld'
+git commit -m 'link recipe submodule for weld initialization'
 git push
 ```
 
 ## Step 4: Perform the Weld
 ### Result:
- 
+
 Data is processed and figures and data are output.
 
 ### Goal:
@@ -121,7 +121,7 @@ Data is processed and figures and data are output.
 1.  Track the submodule (recipe) version with the current data repository.
 
 ### Execution:
-  
+
 1. Activate conda environment. (`conda activate pooled-cell-painting`)
 2. Manually update the configuration yaml documents for your specific experiment.
     * Yaml documents with reasonable default values are available in the [config/](config/) folder.  
