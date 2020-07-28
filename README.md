@@ -6,7 +6,7 @@ The purpose of the repository is to weld together a versioned data processing pi
 <p align="center">
 <figure>
 <img src="https://raw.githubusercontent.com/broadinstitute/pooled-cp-profiling-template/a57cb7f9e36b89ff56acf094f18ca06b1a53b719/media/pipeline_weld.png" width="500">
-<figcaption>Data Pipeline Welding is the process of creating a new repository for each dataset within a Pooled Cell Painting project. The pooled-cell-painting-profiling-recipe contains the data processing pipeline. The user forks the recipe and can then edit their fork in a versioned manner. The pooled-cell-painting-profiling-template (this repo) contains the config files that must be edited for each dataset and therefore also need to be versioned. The fork of the recipe is added to the dataset-specific repo as a submodule. The code in the recipe can then be run and output morphology profiles that are completely versioned. </figcaption>
+<figcaption>**Figure 1:** Data Pipeline Welding is a procedure that links together version controlled data with a version controlled processing pipeline. The procedure results in a new repository for each dataset within a Pooled Cell Painting project. The `pooled-cell-painting-profiling-recipe` repository contains the data processing pipeline. The `pooled-cell-painting-profiling-template` (this repo) contains recipe configuration files that must be edited for each dataset. A user's recipe fork is added to the dataset-specific repo as a Github submodule.  The weld is finalized when the user prepares the recipe, outputting version controlled morphology profiles that are used for downstream biological discovery. </figcaption>
 </figure>
 </p>
 
