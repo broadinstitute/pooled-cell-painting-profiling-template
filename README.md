@@ -11,6 +11,7 @@ The purpose of the repository is to weld together a versioned data processing pi
 </p>
 
 A note about terminology:  
-A `batch` is the data pipeline welding unit. As the pipeline is currently written, a `batch` is a single plate of data and may also be referred to as a `dataset`.
+A `batch` is the data pipeline welding unit.
+As the pipeline is currently written, a `batch` is a single plate of data and may also be referred to as a `dataset`.
 An `experiment` is designed around a specific question and may contain single or multiple batches, depending on the experimental design.
 A `project` is an encompassing term and may contain any number of experiments (and therefore any number of batches).
