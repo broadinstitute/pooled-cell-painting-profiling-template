@@ -55,6 +55,8 @@ Enter a name for your new repository that includes your batch name and click "Cr
 
 ![New_Repo](media/new_repo_from_template.png)
 
+Now, fork and clone the forked repository to your favorite file system (local, AWS, GCP, etc.).
+
 ## Step 2: Create a Submodule of the Forked Recipe Inside the New Repository
 
 Next, we create a [submodule](https://gist.github.com/gitaarik/8735255) in the repository we just created.
