@@ -1,9 +1,24 @@
+# Setting up the weld
+
 The following are the two setup steps that need to be performed once at the start of a project.  
 
 For a general overview of the pipeline welding process, see the [repo README](README.md).  
-For the welding process steps to perform with each dataset, see the [weld process README](weld_process_README.md).
+For the welding process steps to perform with each dataset, see the [weld process README](WELD.md).
 
-## Setup the Computational Environment
+## Setup the computational environment
+
+### Setup a new repository
+
+For instructions on how to setup a new repository, see [WELD.md](WELD.md#step-1-create-a-new-repository-using-this-repository-as-a-template)
+
+### Initialize the computational environment
+
+After setting up a new repository using our template, navigate into the top level directory of the newly cloned repo.
+
+```bash
+NEW_REPO="INSERT_REPO_NAME_HERE"
+cd $NEW_REPO
+```
 
 Install [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/).  
 We use conda as an environment manager.
@@ -16,7 +31,7 @@ conda env create --force --file environment.yml
 conda activate pooled-cell-painting
 ```
 
-## Fork the Pooled Cell Painting Painting Recipe
+## Fork the Pooled Cell Painting Painting recipe
 
 We first want to [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the official pooled cell profiling recipe located at https://github.com/broadinstitute/pooled-cp-profiling-recipe.
 
