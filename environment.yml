@@ -18,4 +18,4 @@ dependencies:
 - conda-forge::black=19.10b0
 - conda-forge::nb_black=1.0.7
 - pip:
-  - git+https://github.com/cytomining/pycytominer@dd064c2185435e19541bafa7c976d55da15cf09e
+  - git+https://github.com/cytomining/pycytominer@ced33f5626c5508f44729e9145c1b051366d6e96
