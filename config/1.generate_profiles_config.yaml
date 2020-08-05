@@ -1,11 +1,11 @@
 ---
-master_config:
-  step: generate-profiles
+main_config:
+  step: preprocess-sites
   pipeline: Pooled Cell Painting
-  project_tag: 2018_11_20_Periscope_Calico
+  project_tag: Periscope
 ---
 core:
-  batch: 20190919_6W_CP074A
+  batch: CP_BATCH_ID
   project_dir: /Users/gway/work/projects/
   site_dir: ../0.preprocess-sites/data/
   output_single_cell_dir: single_cell/
