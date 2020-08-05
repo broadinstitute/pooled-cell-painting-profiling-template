@@ -17,7 +17,7 @@ Do not edit these.*
 *This workflow assumes that input data was output from image analysis with a folder per site in the parent folder structure: project_dir/project/batch/*
 
 `batch:` *The full batch tag as found in s3://imaging-platform/projects/PROJECT/  
-e.g.* 20190919_6W_CP074A
+e.g.* CP123
 
 `project_dir:` *This is the master folder that contains your input data. It is one level up from the project folder.  
 e.g.* /Users/gway/work/projects/
@@ -80,8 +80,7 @@ e.g.*
 Set to* true *or* false.
 
 `example_site:` *The name of a single example folder containing data from a single site that is found in project_dir/project/batch.  
-e.g.* CP074A_A1-Site_1  
-*e.g.* 151B2-B1-45
+e.g.* CP123_A1_1  
 
 `output_basedir:` *Name the folder where you would like this step to output files.  
 e.g.* data
@@ -198,11 +197,11 @@ e.g.* .2
 `painting_image_names:` *The names of all input images used for Cell Painting as they are named in CellProfiler.  
 You can find image names as part of any measurement column in Image.csv (e.g. columns starting with Width_).  
 e.g.*  
-    - Pre_ConA  
-    - Pre_DAPI_Painting  
-    - Pre_Mito  
-    - Pre_Phalloidin  
-    - Pre_WGA  
+    - ConA  
+    - Hoechst  
+    - Mito  
+    - SYTO  
+    - WGA  
 
 `barcoding_cyles:` *The number of SBS cycles run in the experiment.  
  e.g.* 12
