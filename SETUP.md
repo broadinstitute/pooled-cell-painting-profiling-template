@@ -1,6 +1,6 @@
 # Setting up the weld
 
-The following are the two setup steps that need to be performed once at the start of a project.  
+The following are the two setup steps that need to be performed once before starting your first project.  
 
 For a general overview of the pipeline welding process, see the [repo README](README.md).  
 For the welding process steps to perform with each dataset, see the [weld process README](WELD.md).
