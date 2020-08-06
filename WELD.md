@@ -55,6 +55,8 @@ Enter a name for your new repository that includes your batch name and click "Cr
 
 ![New_Repo](media/new_repo_from_template.png)
 
+Now, fork and clone the forked repository to your favorite file system (local, AWS, GCP, etc.).
+
 ## Step 2: Create a Submodule of the Forked Recipe Inside the New Repository
 
 Next, we create a [submodule](https://gist.github.com/gitaarik/8735255) in the repository we just created.
@@ -82,7 +84,7 @@ git clone git@github.com:$USER/$REPO.git
 cd $REPO
 
 # Add the Recipe Submodule
-git submodule add https://github.com/$USER/pooled-cp-profiling-recipe.git pooled-cp-profiling-recipe
+git submodule add git@github.com:$USER/pooled-cell-painting-profiling-recipe.git recipe
 ```
 
 Refer to ["Adding a submodule"](https://gist.github.com/gitaarik/8735255#adding-a-submodule) for more details.
@@ -105,9 +107,8 @@ See below:
 
 ```bash
 # Add, commit, and push the submodule contents
-git add pooled_cp_profiling_recipe
-git add .gitmodules
-git commit -m 'link recipe submodule for weld initialization'
+git add .gitmodules recipe
+git commit -m 'link recipe submodule to initialize weld'
 git push
 ```
 
