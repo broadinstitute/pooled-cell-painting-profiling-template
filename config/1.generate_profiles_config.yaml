@@ -42,6 +42,7 @@ single_cell:
     - Great
   cell_quality_column: Metadata_Foci_Cell_Quality
   output_basedir: data/single_cell
+  sanitize_gene_col: true
   merge_columns:
     image_column: ImageNumber
     linking_compartment: Cytoplasm
