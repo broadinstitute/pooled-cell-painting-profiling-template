@@ -98,11 +98,11 @@ def process_configuration(
 
     # Setup a dictionary where file info will be stored
     file_info = {}
-    file_info["files"] = {}
 
     # Load experiment configuration
     config = process_experiment_options(config=experiment_config)
     ignore_files = config["experiment"]["ignore_files"]
+    file_info["experiment"] = config["experiment"]
 
     # Load options configuration
     file_info["options"] = load_options_config(config=options_config)
@@ -113,6 +113,7 @@ def process_configuration(
     )
 
     # Generate important miscellaneous output file names
+    file_info["files"] = {}
     file_info["files"]["prefilter_file"] = pathlib.Path(
         file_info["directories"]["preprocessing"]["data"], "feature_prefilter.tsv",
     )
