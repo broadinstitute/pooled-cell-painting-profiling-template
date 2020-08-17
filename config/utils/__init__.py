@@ -1,4 +1,5 @@
 import sys
+
 sys.path.append("config")
 
 from utils.arg_utils import parse_command_args
