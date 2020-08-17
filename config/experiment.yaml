@@ -1,0 +1,49 @@
+---
+experiment:
+  pipeline: Pooled Cell Painting
+  project_tag: Periscope
+  batch: BATCH_ID
+  plates:
+    - PLATE01
+    - PLATE02
+  compartments:
+    - Cells
+    - Nuclei
+    - Cytoplasm
+  control_barcode_ids:
+    - NT
+  cell_id_cols:
+    - ImageNumber
+    - ObjectNumber
+  cell_match_cols:
+    cells:
+      - Parent_Nuclei
+    cytoplasm:
+      - Parent_Nuclei
+      - Parent_Cells
+    spots:
+      - Parent_Cells
+  categorize_cell_quality: simple
+  cell_filter:
+    - Perfect
+    - Great
+  ignore_files:
+    - .DS_Store
+---
+directory_structure:
+  input_data_dir: /Users/gway/work/projects/2018_11_20_Periscope_Calico/workspace/analysis
+  plate_id_folder: true
+  output_data_dir: data/
+  preprocessing:
+    base: 0.site-qc/
+    plate_id_folder: true
+    spots: spots/
+    paint: paint/
+    data: data/
+    results: results/
+    figures: figures/
+  profiling:
+    base: 1.profiles/
+    plate_id_folder: true
+    single_cell: single_cell/
+    profiles: profiles/
