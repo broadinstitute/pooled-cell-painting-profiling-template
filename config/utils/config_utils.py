@@ -101,12 +101,11 @@ def process_configuration(
 
     # Load experiment configuration
     config = process_experiment_options(config=experiment_config)
-    ignore_files = config["experiment"]["ignore_files"]
     file_info["experiment"] = config["experiment"]
 
     # Load options configuration
     file_info["options"] = load_options_config(config=options_config)
-
+    ignore_files = file_info["options"]["core"]["ignore_files"]
     # Setup the directory structure
     file_info["directories"] = setup_directory_structure(
         plate_id=plate_id, experiment_config=experiment_config
