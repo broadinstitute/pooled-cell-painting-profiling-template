@@ -15,6 +15,8 @@ core:
       - Parent_Cells
     spots:
       - Parent_Cells
+  compression: gzip
+  float_format: "%.5g"
   ignore_files:
     - .DS_Store
 ---
@@ -83,6 +85,7 @@ preprocess:
 profile:
   single_cell:
     perform: true
+    force_overwrite: true
     prefilter_features: true
     output_one_single_cell_file_only: false
     cell_quality_column: Metadata_Foci_Cell_Quality
@@ -98,6 +101,7 @@ profile:
         - Metadata_Cells_ObjectNumber
   aggregate:
     perform: true
+    force_overwrite: true
     operation: median
     features: infer
     levels:
@@ -108,6 +112,7 @@ profile:
         - Metadata_Foci_Barcode_MatchedTo_Barcode
   normalize:
     perform: true
+    force_overwrite: true
     method: standardize
     levels:
       - gene
@@ -117,6 +122,7 @@ profile:
     features: infer
   feature_select:
     perform: true
+    force_overwrite: true
     operations:
       - variance_threshold
       - drop_na_columns
