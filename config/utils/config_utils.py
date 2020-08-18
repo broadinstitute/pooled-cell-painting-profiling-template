@@ -114,21 +114,21 @@ def process_configuration(
     # Generate important miscellaneous output file names
     file_info["files"] = {}
     file_info["files"]["prefilter_file"] = pathlib.Path(
-        file_info["directories"]["preprocessing"]["data"], "feature_prefilter.tsv",
+        file_info["directories"]["preprocess"]["data"], "feature_prefilter.tsv",
     )
     file_info["files"]["image_file"] = pathlib.Path(
-        file_info["directories"]["preprocessing"]["data"], "image_metadata.tsv",
+        file_info["directories"]["preprocess"]["data"], "image_metadata.tsv",
     )
     file_info["files"]["cell_count_file"] = pathlib.Path(
-        file_info["directories"]["preprocessing"]["results"], "cell_count.tsv",
+        file_info["directories"]["preprocess"]["results"], "cell_count.tsv",
     )
     file_info["files"]["total_cell_count_file"] = pathlib.Path(
-        file_info["directories"]["preprocessing"]["results"], "total_cell_count.tsv",
+        file_info["directories"]["preprocess"]["results"], "total_cell_count.tsv",
     )
 
     # This file is only used if single_file_only flag is used in 0.merge-single-cells.py
     file_info["files"]["single_file_only_output_file"] = pathlib.Path(
-        file_info["directories"]["profiling"]["single_cell"],
+        file_info["directories"]["profile"]["single_cell"],
         f"{plate_id}_single_cell_profiles.csv.gz",
     )
 
@@ -145,7 +145,7 @@ def process_configuration(
         for site in sites:
             # Define single cell output directory and files
             site_output_dir = pathlib.Path(
-                file_info["directories"]["profiling"]["single_cell"] / site
+                file_info["directories"]["profile"]["single_cell"] / site
             )
             site_output_dir.mkdir(exist_ok=True)
             file_info["files"]["single_cell_site_files"][site] = pathlib.Path(
@@ -158,7 +158,7 @@ def process_configuration(
         "aggregate"
     ]["levels"].items():
         file_info["files"]["aggregate_files"][aggregate_level] = pathlib.Path(
-            file_info["directories"]["profiling"]["profiles"],
+            file_info["directories"]["profile"]["profiles"],
             f"{plate_id}_{aggregate_level}.csv.gz",
         )
 
@@ -166,7 +166,7 @@ def process_configuration(
     file_info["files"]["normalize_files"] = {}
     for normalize_level in file_info["options"]["profile"]["normalize"]["levels"]:
         file_info["files"]["normalize_files"][normalize_level] = pathlib.Path(
-            file_info["directories"]["profiling"]["profiles"],
+            file_info["directories"]["profile"]["profiles"],
             f"{plate_id}_{normalize_level}_normalized.csv.gz",
         )
 
@@ -176,7 +176,7 @@ def process_configuration(
         "levels"
     ]:
         file_info["files"]["feature_select_files"][feature_select_level] = pathlib.Path(
-            file_info["directories"]["profiling"]["profiles"],
+            file_info["directories"]["profile"]["profiles"],
             f"{plate_id}_{feature_select_level}_normalized_feature_select.csv.gz",
         )
 

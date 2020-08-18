@@ -18,7 +18,7 @@ directory_structure:
   input_data_dir: /Users/gway/work/projects/2018_11_20_Periscope_Calico/workspace/analysis
   plate_id_folder: true
   output_data_dir: data/
-  preprocessing:
+  preprocess:
     base: 0.site-qc/
     plate_id_folder: true
     spots: spots/
@@ -26,7 +26,7 @@ directory_structure:
     data: data/
     results: results/
     figures: figures/
-  profiling:
+  profile:
     base: 1.profiles/
     plate_id_folder: true
     single_cell: single_cell/
