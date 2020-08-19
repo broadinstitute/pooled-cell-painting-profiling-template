@@ -9,10 +9,6 @@ experiment:
   barcoding_cycles: 10
   control_barcode_ids:
     - NT
-  categorize_cell_quality: simple
-  cell_filter:
-    - Perfect
-    - Great
 ---
 directory_structure:
   input_data_dir: /Users/gway/work/projects/2018_11_20_Periscope_Calico/workspace/analysis

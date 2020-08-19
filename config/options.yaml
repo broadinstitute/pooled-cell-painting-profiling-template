@@ -4,6 +4,13 @@ core:
     - Cells
     - Nuclei
     - Cytoplasm
+  cell_quality:
+    categorize_cell_quality: simple
+    cell_filter:
+      - Perfect
+      - Great
+    cell_quality_column: Metadata_Foci_Cell_Quality
+    cell_quality_index: Metadata_Foci_Cell_Quality_Index
   cell_id_cols:
     - ImageNumber
     - ObjectNumber
@@ -65,7 +72,6 @@ preprocess:
       cell_cols:
         - Metadata_Cells_ImageNumber
         - Metadata_Cells_ObjectNumber
-      cell_quality_col: Metadata_Foci_Cell_Quality
     foci_site_col: Metadata_Foci_site
   summarize-cells:
     perform: true
@@ -125,6 +131,7 @@ profile:
     force_overwrite: true
     operations:
       - variance_threshold
+      - correlation_threshold
       - drop_na_columns
       - blacklist
       - drop_outliers
@@ -132,7 +139,7 @@ profile:
       - gene
       - guide
       - single_cell
-    drop_samples: none
+    use_samples: all
     features: infer
     na_cutoff: 0
     corr_threshold: 0.9
