@@ -7,6 +7,7 @@ experiment:
     - PLATE01
     - PLATE02
   barcoding_cycles: 10
+  sites_per_image_grid_side: 10
   control_barcode_ids:
     - NT
 ---
