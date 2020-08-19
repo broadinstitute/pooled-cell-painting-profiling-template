@@ -51,26 +51,28 @@ def setup_directory_structure(plate_id, experiment_config=experiment_config_defa
     return output_dir_info
 
 
-def process_experiment_options(config=experiment_config_default):
-    config = load_experiment_config(config=config)
+def process_additional_options(config=options_config_default):
+    config = load_options_config(config=config)
     # Build visualization information
-    if config["experiment"]["categorize_cell_quality"] == "simple":
-        config["experiment"]["cell_category_order"] = [
+    if config["core"]["cell_quality"]["categorize_cell_quality"] == "simple":
+        config["core"]["cell_quality"]["cell_category_order"] = [
             "Perfect",
             "Great",
             "Imperfect",
             "Bad",
             "Empty",
         ]
-        config["experiment"]["cell_category_colors"] = [
+        config["core"]["cell_quality"]["cell_category_colors"] = [
             "#DB5F57",
             "#91DB57",
             "#57D3DB",
             "#A157DB",
             "#776244",
         ]
-    elif config["experiment"]["categorize_cell_quality"] == "simple_plus":
-        config["experiment"]["cell_category_order"] = [
+    elif (
+        config["core"]["cell_quality"]["categorize_cell_quality"] == "simple_plus"
+    ):
+        config["core"]["cell_quality"]["cell_category_order"] = [
             "Perfect",
             "Great",
             "Imperfect-High",
@@ -78,7 +80,7 @@ def process_experiment_options(config=experiment_config_default):
             "Bad",
             "Empty",
         ]
-        config["experiment"]["cell_category_colors"] = [
+        config["core"]["cell_quality"]["cell_category_colors"] = [
             "#DB5F57",
             "#91DB57",
             "#57D3DB",
@@ -100,12 +102,17 @@ def process_configuration(
     file_info = {}
 
     # Load experiment configuration
-    config = process_experiment_options(config=experiment_config)
+    config = load_options_config(config=experiment_config)
     file_info["experiment"] = config["experiment"]
 
     # Load options configuration
     file_info["options"] = load_options_config(config=options_config)
+
+    # Load additional options
+    additional_config = process_additional_options(options_config)
+    file_info["options"]["core"]["cell_quality"] = additional_config["core"]["cell_quality"]
     ignore_files = file_info["options"]["core"]["ignore_files"]
+
     # Setup the directory structure
     file_info["directories"] = setup_directory_structure(
         plate_id=plate_id, experiment_config=experiment_config
