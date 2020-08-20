@@ -128,9 +128,8 @@ Data is processed and figures and data are output.
     * Yaml documents with reasonable default values are available in the [config/](config/) folder.  
     * Do NOT change the location of the .yaml files.  
     * Additional documentation for each of the parameters is available in the [config/docs/](config/docs/) folder.  
-3. Execute `weld.sh` (see below)
+3. Execute `weld.py` (see below)
 
 ```
-bash
-./weld.sh
+python weld.py
 ```
