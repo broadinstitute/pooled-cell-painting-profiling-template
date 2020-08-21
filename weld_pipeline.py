@@ -33,11 +33,11 @@ def weld_pipeline(
     preprocess_dir = str(pathlib.Path(f"{recipe_folder}/0.preprocess-sites"))
 
     preprocess_scripts = [
-         "0.prefilter-features.py",
-         "1.process-spots.py",
-         "2.process-cells.py",
-         "3.visualize-cell-summary.py",
-         "4.image-and-segmentation-qc.py",
+        "0.prefilter-features.py",
+        "1.process-spots.py",
+        "2.process-cells.py",
+        "3.visualize-cell-summary.py",
+        "4.image-and-segmentation-qc.py",
     ]
 
     for script in preprocess_scripts:
@@ -49,10 +49,10 @@ def weld_pipeline(
     profile_dir = str(pathlib.Path(f"{recipe_folder}/1.generate-profiles"))
 
     profile_scripts = [
-         "0.merge-single-cells.py",
-         "1.aggregate.py",
-         "2.normalize.py",
-         "3.feature-select.py",
+        "0.merge-single-cells.py",
+        "1.aggregate.py",
+        "2.normalize.py",
+        "3.feature-select.py",
     ]
 
     for script in profile_scripts:

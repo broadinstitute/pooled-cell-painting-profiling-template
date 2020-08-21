@@ -1,3 +1,4 @@
+import os
 import yaml
 import pathlib
 
@@ -69,9 +70,7 @@ def process_additional_options(config=options_config_default):
             "#A157DB",
             "#776244",
         ]
-    elif (
-        config["core"]["cell_quality"]["categorize_cell_quality"] == "simple_plus"
-    ):
+    elif config["core"]["cell_quality"]["categorize_cell_quality"] == "simple_plus":
         config["core"]["cell_quality"]["cell_category_order"] = [
             "Perfect",
             "Great",
@@ -102,7 +101,7 @@ def process_configuration(
     file_info = {}
 
     # Load experiment configuration
-    config = load_options_config(config=experiment_config)
+    config = load_experiment_config(config=experiment_config)
     file_info["experiment"] = config["experiment"]
 
     # Load options configuration
@@ -110,7 +109,9 @@ def process_configuration(
 
     # Load additional options
     additional_config = process_additional_options(options_config)
-    file_info["options"]["core"]["cell_quality"] = additional_config["core"]["cell_quality"]
+    file_info["options"]["core"]["cell_quality"] = additional_config["core"][
+        "cell_quality"
+    ]
     ignore_files = file_info["options"]["core"]["ignore_files"]
 
     # Setup the directory structure
@@ -143,6 +144,18 @@ def process_configuration(
     input_analysis_dir = file_info["directories"]["input_data_dir"]
 
     sites = [x.name for x in input_analysis_dir.iterdir() if x.name not in ignore_files]
+
+    # Assert all compartment files are present in each site folder before populating
+    compartments = [f"{x}.csv" for x in file_info["options"]["core"]["compartments"]]
+    sites = [
+        x
+        for x in sites
+        if all(
+            compart_file in os.listdir(pathlib.Path(input_analysis_dir / x))
+            for compart_file in compartments
+        )
+    ]
+
     file_info["options"]["example_site"] = sites[0]
 
     if not file_info["options"]["profile"]["single_cell"][
