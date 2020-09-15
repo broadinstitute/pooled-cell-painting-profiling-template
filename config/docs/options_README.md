@@ -29,7 +29,7 @@ e.g.*
     - Great  
 `cell_quality_column:` *The column that contains the numerical cell quality category.  
 e.g.* Metadata_Foci_Cell_Quality  
-`cell_quality_index:` *The column that contains DESCRIBETHIS  
+`cell_quality_index:` *The column that contains info on how to rename the index in the cell quality dataframe.  
 e.g.* Metadata_Foci_Cell_Quality_Index
 
 `cell_id_cols:` *All columns necessary for parsing objects.
@@ -191,7 +191,7 @@ Set to* true *or* false.
 `prefilter_features:` *Do you want to use the prefilter file created during preprocessing?
 Set to* true *or* false.  
 
-`output_one_single_cell_file_only:` *Do you want to output a single file SAYMORE.
+`output_one_single_cell_file_only:` *Do you want to concatenate all single cell files into a single file rather than having site-specific single cell files.
 False is recommended, particularly for large datasets.
 Set to* true *or* false.  
 
@@ -221,10 +221,10 @@ Set to* true *or* false.
 `operation:` *A string indicating how the data is aggregated. Currently only supports* mean *or the default of* median *. See pycytominer documentation for more information.  
 e.g.* median  
 `features:` *Set to* all *or pass a list of features that should be aggregated. Default of* infer *uses pycytominer utils to infer the features list. Note that pycytominer assumes standard Cell Painting compartments. e.g.* infer  
-`levels`*:*  
-`gene:` *EXPLAIN e.g.*  
+`levels`: *In image-based profiling experiments using CRISPR perturbations, we aggregate single cells (average morphology features) in two possible ways (gene and guide). Gene aggregation averages all single cells infected with all guides identified to target the specific gene.*  
+`gene:` *e.g.*  
     - Metadata_Foci_Barcode_MatchedTo_GeneCode  
-`guide:` *EXPLAIN. e.g.*  
+`guide:` *e.g.*  
     - Metadata_Foci_Barcode_MatchedTo_GeneCode  
     - Metadata_Foci_Barcode_MatchedTo_Barcode
 
@@ -234,7 +234,7 @@ Set to* true *or* false.
 `force_overwrite:` *Do you want to overwrite any existing data?  
 Set to* true *or* false.  
 `method:` *String indicating how the dataframe will be normalized. e.g.* standardize  
-`levels:` *EXPLAIN e.g.*  
+`levels:` *This step "normalizes" the features to exist on the same scale and range. The levels argument asks at which "profile" level is the normalization performed. e.g.*  
     - gene  
     - guide  
     - single_cell  
@@ -246,14 +246,14 @@ Set to* true *or* false.
 Set to* true *or* false.  
 `force_overwrite:` *Do you want to overwrite any existing data?  
 Set to* true *or* false.  
-`operations:` *EXPLAIN  
+`operations:` *The list of "feature selection" operations in pycytominer that you would like to use. Each reduces the number of morphology measurements used to compose "profiles".  
 e.g.*  
     - variance_threshold  
     - correlation_threshold  
     - drop_na_columns  
     - blacklist  
     - drop_outliers  
-`levels:` *EXPLAIN  
+`levels:` *This step "normalizes" the features to exist on the same scale and range. The levels argument asks at which "profile" level is the normalization performed.    
 e.g.*  
     - gene  
     - guide  
