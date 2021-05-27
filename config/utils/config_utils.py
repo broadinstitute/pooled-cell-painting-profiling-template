@@ -89,6 +89,9 @@ def process_additional_options(config=options_config_default):
             "#776244",
         ]
 
+    if config["core"]["compression"] == "gzip":
+        config["core"]["compression"] = {"method": "gzip", "mtime": 1}
+
     return config
 
 
@@ -116,12 +119,15 @@ def process_configuration(
     # To determine if we should continue processing the configuration file, or if we
     # can skip.
     primary_step, secondary_step = step.split("--")
-    perform = config["options"][primary_step][secondary_step]["perform"]
+    perform = file_info["options"][primary_step][secondary_step]["perform"]
     if not perform:
         sys.exit(f"Config file set to perform=False, not performing step: {step}")
 
     # Load additional options
     additional_config = process_additional_options(options_config)
+    file_info["options"]["core"]["compression"] = additional_config["core"][
+        "compression"
+    ]
     file_info["options"]["core"]["cell_quality"] = additional_config["core"][
         "cell_quality"
     ]
