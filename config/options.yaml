@@ -56,6 +56,7 @@ preprocess:
     foci_cols:
       - Barcode_BarcodeCalled
       - Barcode_MatchedTo_ID
+    exact_match_reads_col: "exact_match_reads_per_cell"
   process-cells:
     perform: true
     force_overwrite: true
@@ -94,7 +95,7 @@ profile:
     perform: true
     force_overwrite: true
     prefilter_features: true
-    output_one_single_cell_file_only: false
+    output_one_single_cell_file_only: true
     cell_quality_column: Metadata_Foci_Cell_Quality
     sanitize_gene_col: true
     merge_columns:
@@ -134,7 +135,7 @@ profile:
       - variance_threshold
       - correlation_threshold
       - drop_na_columns
-      - blacklist
+      - blocklist
       - drop_outliers
     levels:
       - gene
