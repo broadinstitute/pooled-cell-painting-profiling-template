@@ -177,10 +177,10 @@ def process_configuration(
 
     file_info["options"]["example_site"] = sites[0]
 
+    file_info["files"]["single_cell_site_files"] = {}
     if not file_info["options"]["profile"]["single_cell"][
         "output_one_single_cell_file_only"
     ]:
-        file_info["files"]["single_cell_site_files"] = {}
         for site in sites:
             # Define single cell output directory and files
             site_output_dir = pathlib.Path(
