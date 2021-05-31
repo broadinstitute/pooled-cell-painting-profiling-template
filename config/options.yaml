@@ -40,6 +40,7 @@ preprocess:
     perform: true
     force_overwrite: true
     image_cols:
+      full_info: "Metadata_site"
       well: "Metadata_Well"
       site: "Metadata_Site"
       plate: "Metadata_Plate"

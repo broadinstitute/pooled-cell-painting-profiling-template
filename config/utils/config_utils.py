@@ -1,4 +1,5 @@
 import os
+import sys
 import yaml
 import pathlib
 
@@ -88,14 +89,22 @@ def process_additional_options(config=options_config_default):
             "#776244",
         ]
 
+    if config["core"]["compression"] == "gzip":
+        config["core"]["compression"] = {"method": "gzip", "mtime": 1}
+
     return config
 
 
 def process_configuration(
     plate_id,
+    step,
     options_config=options_config_default,
     experiment_config=experiment_config_default,
 ):
+
+    # Confirm that the input step is valid
+    all_step_names = get_step_names()
+    assert step in all_step_names, f"{step} is invalid, select one of: {all_step_names}"
 
     # Setup a dictionary where file info will be stored
     file_info = {}
@@ -107,8 +116,18 @@ def process_configuration(
     # Load options configuration
     file_info["options"] = load_options_config(config=options_config)
 
+    # To determine if we should continue processing the configuration file, or if we
+    # can skip.
+    primary_step, secondary_step = step.split("--")
+    perform = file_info["options"][primary_step][secondary_step]["perform"]
+    if not perform:
+        sys.exit(f"Config file set to perform=False, not performing step: {step}")
+
     # Load additional options
     additional_config = process_additional_options(options_config)
+    file_info["options"]["core"]["compression"] = additional_config["core"][
+        "compression"
+    ]
     file_info["options"]["core"]["cell_quality"] = additional_config["core"][
         "cell_quality"
     ]
@@ -206,3 +225,19 @@ def process_configuration(
 def get_plates(config=experiment_config_default):
     config = load_experiment_config(config=config)
     return config["experiment"]["plates"]
+
+
+def get_step_names():
+    steps = [
+        "preprocess--prefilter",
+        "preprocess--process-spots",
+        "preprocess--process-cells",
+        "preprocess--summarize-cells",
+        "preprocess--summarize-plate",
+        "profile--single_cell",
+        "profile--aggregate",
+        "profile--process-cells",
+        "profile--normalize",
+        "profile--feature_select",
+    ]
+    return steps
