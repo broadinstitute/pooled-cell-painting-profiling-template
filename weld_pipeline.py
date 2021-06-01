@@ -7,7 +7,7 @@ options_config_default = pathlib.Path("config/options.yaml")
 
 
 def weld_pipeline(
-    plate_id,
+    batch_id,
     recipe_folder=recipe_default,
     experiment_config_file=experiment_config_default,
     options_config_file=options_config_default,
@@ -18,8 +18,8 @@ def weld_pipeline(
     """
 
     payload = [
-        "--plate_id",
-        str(plate_id),
+        "--batch_id",
+        str(batch_id),
         "--experiment_config_file",
         experiment_config_file,
         "--options_config_file",

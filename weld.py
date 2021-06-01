@@ -15,7 +15,7 @@ import pathlib
 import multiprocessing as mp
 from weld_pipeline import weld_pipeline
 
-from config.utils import get_plates, parse_command_args
+from config.utils import get_batches, parse_command_args
 
 EXPCONFIG_DEFAULT = pathlib.Path("config/experiment.yaml")
 OPCONFIG_DEFAULT = pathlib.Path("config/options.yaml")
@@ -33,7 +33,7 @@ options_config_file = args.options_config_file
 parallel = args.parallel
 force = args.force
 
-plates = get_plates(config=experiment_config_file)
+batches = get_batches(config=experiment_config_file)
 
 if parallel:
     # Setup multiprocessing
@@ -44,24 +44,24 @@ if parallel:
         pool.apply(
             weld_pipeline,
             args=(
-                plate_id,
+                batch_id,
                 recipe_dir,
                 experiment_config_file,
                 options_config_file,
                 force,
             ),
         )
-        for plate_id in plates
+        for batch_id in batches
     ]
 
     # Close the parallelization
     pool.close()
 
 else:
-    for plate_id in plates:
+    for batch_id in batches:
         # If parallel is not provided, then process each plate sequentially
         weld_pipeline(
-            plate_id=plate_id,
+            batch_id=batch_id,
             recipe_folder=recipe_dir,
             experiment_config_file=experiment_config_file,
             options_config_file=options_config_file,

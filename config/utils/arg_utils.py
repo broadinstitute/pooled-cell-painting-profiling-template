@@ -24,7 +24,7 @@ def parse_command_args(
         "--parallel", help="add flag to parallelize across plates", action="store_true"
     )
     parser.add_argument(
-        "--plate_id", help="a string indicating which plate to process", default=None
+        "--batch_id", help="a string indicating which batch to process", default=None
     )
     parser.add_argument(
         "--force", help="force overwriting of feature data", action="store_true"

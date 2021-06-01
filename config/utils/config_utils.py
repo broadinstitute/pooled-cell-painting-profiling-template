@@ -23,13 +23,13 @@ def load_options_config(config=options_config_default):
     return load_config(config)
 
 
-def setup_directory_structure(plate_id, experiment_config=experiment_config_default):
+def setup_directory_structure(batch_id, experiment_config=experiment_config_default):
     config = load_experiment_config(config=experiment_config)
     dir_info = config["directory_structure"]
 
-    # Append plate id to input and output directories
-    if dir_info["plate_id_folder"]:
-        dir_info["input_data_dir"] = pathlib.Path(dir_info["input_data_dir"], plate_id)
+    # Append batch id to input and output directories
+    if dir_info["batch_id_folder"]:
+        dir_info["input_data_dir"] = pathlib.Path(dir_info["input_data_dir"], batch_id)
 
     output_dir_info = dir_info.copy()
     for step in dir_info:
@@ -39,11 +39,11 @@ def setup_directory_structure(plate_id, experiment_config=experiment_config_defa
             continue
 
         output_dir_path = pathlib.Path(dir_info["output_data_dir"], step_dirs["base"])
-        if step_dirs["plate_id_folder"]:
-            output_dir_path = output_dir_path / plate_id
+        if step_dirs["batch_id_folder"]:
+            output_dir_path = output_dir_path / batch_id
 
         for dir in step_dirs:
-            if dir not in ["base", "plate_id_folder"]:
+            if dir not in ["base", "batch_id_folder"]:
                 full_dir = pathlib.Path(output_dir_path / dir)
                 full_dir.mkdir(exist_ok=True, parents=True)
                 output_dir_info[step][dir] = full_dir
@@ -96,7 +96,7 @@ def process_additional_options(config=options_config_default):
 
 
 def process_configuration(
-    plate_id,
+    batch_id,
     step,
     options_config=options_config_default,
     experiment_config=experiment_config_default,
@@ -135,7 +135,7 @@ def process_configuration(
 
     # Setup the directory structure
     file_info["directories"] = setup_directory_structure(
-        plate_id=plate_id, experiment_config=experiment_config
+        batch_id=batch_id, experiment_config=experiment_config
     )
 
     # Generate important miscellaneous output file names
@@ -156,7 +156,7 @@ def process_configuration(
     # This file is only used if single_file_only flag is used in 0.merge-single-cells.py
     file_info["files"]["single_file_only_output_file"] = pathlib.Path(
         file_info["directories"]["profile"]["single_cell"],
-        f"{plate_id}_single_cell_profiles.csv.gz",
+        f"{batch_id}_single_cell_profiles.csv.gz",
     )
 
     # Setup input single cell site files
@@ -198,7 +198,7 @@ def process_configuration(
     ]["levels"].items():
         file_info["files"]["aggregate_files"][aggregate_level] = pathlib.Path(
             file_info["directories"]["profile"]["profiles"],
-            f"{plate_id}_{aggregate_level}.csv.gz",
+            f"{batch_id}_{aggregate_level}.csv.gz",
         )
 
     # Build paths to normalized files
@@ -206,7 +206,7 @@ def process_configuration(
     for normalize_level in file_info["options"]["profile"]["normalize"]["levels"]:
         file_info["files"]["normalize_files"][normalize_level] = pathlib.Path(
             file_info["directories"]["profile"]["profiles"],
-            f"{plate_id}_{normalize_level}_normalized.csv.gz",
+            f"{batch_id}_{normalize_level}_normalized.csv.gz",
         )
 
     # Build paths to feature select files
@@ -216,15 +216,15 @@ def process_configuration(
     ]:
         file_info["files"]["feature_select_files"][feature_select_level] = pathlib.Path(
             file_info["directories"]["profile"]["profiles"],
-            f"{plate_id}_{feature_select_level}_normalized_feature_select.csv.gz",
+            f"{batch_id}_{feature_select_level}_normalized_feature_select.csv.gz",
         )
 
     return file_info
 
 
-def get_plates(config=experiment_config_default):
+def get_batches(config=experiment_config_default):
     config = load_experiment_config(config=config)
-    return config["experiment"]["plates"]
+    return config["experiment"]["batches"]
 
 
 def get_step_names():
