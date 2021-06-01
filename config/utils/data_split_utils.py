@@ -1,7 +1,8 @@
 import itertools
 
+
 def get_split_aware_site_info(experiment_config, sites, split_info, separator="___"):
-    
+
     # Identify experiment constants
     batches = experiment_config["batches"]
     plates = experiment_config["plates"]
@@ -15,9 +16,11 @@ def get_split_aware_site_info(experiment_config, sites, split_info, separator="_
             site_details[batch][plate] = {}
             for well_set in wells:
                 well_ids = tuple(f"{plate}-{x}" for x in wells[well_set])
-                site_details[batch][plate][well_set] = [x for x in sites if x.startswith(well_ids)]
-                
-    # In the output lookup, define all possible unique combinations of site info            
+                site_details[batch][plate][well_set] = [
+                    x for x in sites if x.startswith(well_ids)
+                ]
+
+    # In the output lookup, define all possible unique combinations of site info
     all_possible_combos = {}
     dict_builder = ""
     for batch in site_details:
@@ -26,8 +29,8 @@ def get_split_aware_site_info(experiment_config, sites, split_info, separator="_
                 dict_builder = f"{batch}{separator}{plate}{separator}{well_set}"
                 sites = site_details[batch][plate][well_set]
                 all_possible_combos[dict_builder] = sites
-                
-    # Pull information on user-defined data splits (see experiment.yaml for specification)           
+
+    # Pull information on user-defined data splits (see experiment.yaml for specification)
     site_lookup = ""
     for split_bool in split_info:
         if not split_info[split_bool]:
@@ -39,7 +42,7 @@ def get_split_aware_site_info(experiment_config, sites, split_info, separator="_
             site_lookup = [x for x in combine_string]
         else:
             site_lookup = [f"{y}___{x}" for x in combine_string for y in site_lookup]
-            
+
     # Merge site information from data to split
     downstream_site_info = {}
     for site_combo in site_lookup:
@@ -57,8 +60,15 @@ def get_split_aware_site_info(experiment_config, sites, split_info, separator="_
         else:
             use_wells = [well_lookup]
 
-        all_combo_lookup = [f"{x}{separator}{y}{separator}{z}" for x in use_batches for y in use_plates for z in use_wells]
+        all_combo_lookup = [
+            f"{x}{separator}{y}{separator}{z}"
+            for x in use_batches
+            for y in use_plates
+            for z in use_wells
+        ]
         all_site_details = [all_possible_combos[x] for x in all_combo_lookup]
-        downstream_site_info[f"{batch_lookup}{separator}{plate_lookup}{separator}{well_lookup}"] = list(itertools.chain.from_iterable(all_site_details))
-    
+        downstream_site_info[
+            f"{batch_lookup}{separator}{plate_lookup}{separator}{well_lookup}"
+        ] = list(itertools.chain.from_iterable(all_site_details))
+
     return downstream_site_info
