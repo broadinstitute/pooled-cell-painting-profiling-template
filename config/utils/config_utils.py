@@ -178,35 +178,41 @@ def process_configuration(
     file_info["options"]["example_site"] = sites[0]
 
     file_info["files"]["single_cell_site_files"] = {}
-    if not file_info["options"]["profile"]["single_cell"][
-        "output_one_single_cell_file_only"
-    ]:
-        for site in sites:
-            # Define single cell output directory and files
-            site_output_dir = pathlib.Path(
-                file_info["directories"]["profile"]["single_cell"] / site
-            )
-            site_output_dir.mkdir(exist_ok=True)
-            file_info["files"]["single_cell_site_files"][site] = pathlib.Path(
-                site_output_dir / f"{site}_single_cell.csv.gz"
-            )
+    for site in sites:
+        # Define single cell output directory and files
+        site_output_dir = pathlib.Path(
+            file_info["directories"]["profile"]["single_cell"] / site
+        )
+        site_output_dir.mkdir(exist_ok=True)
+        file_info["files"]["single_cell_site_files"][site] = pathlib.Path(
+            site_output_dir / f"{site}_single_cell.csv.gz"
+        )
 
     # Build paths to aggregated files
     file_info["files"]["aggregate_files"] = {}
     for aggregate_level, aggregate_columns in file_info["options"]["profile"][
         "aggregate"
     ]["levels"].items():
+
+        if aggregate_level == "single_cell":
+            use_dir = file_info["directories"]["profile"]["single_cell"]
+        else:
+            use_dir = file_info["directories"]["profile"]["profiles"]
+
         file_info["files"]["aggregate_files"][aggregate_level] = pathlib.Path(
-            file_info["directories"]["profile"]["profiles"],
-            f"{batch_id}_{aggregate_level}.csv.gz",
+            use_dir, f"{batch_id}_{aggregate_level}.csv.gz",
         )
 
     # Build paths to normalized files
     file_info["files"]["normalize_files"] = {}
     for normalize_level in file_info["options"]["profile"]["normalize"]["levels"]:
+        if normalize_level == "single_cell":
+            use_dir = file_info["directories"]["profile"]["single_cell"]
+        else:
+            use_dir = file_info["directories"]["profile"]["profiles"]
+
         file_info["files"]["normalize_files"][normalize_level] = pathlib.Path(
-            file_info["directories"]["profile"]["profiles"],
-            f"{batch_id}_{normalize_level}_normalized.csv.gz",
+            use_dir, f"{batch_id}_{normalize_level}_normalized.csv.gz",
         )
 
     # Build paths to feature select files
@@ -214,8 +220,13 @@ def process_configuration(
     for feature_select_level in file_info["options"]["profile"]["feature_select"][
         "levels"
     ]:
+        if feature_select_level == "single_cell":
+            use_dir = file_info["directories"]["profile"]["single_cell"]
+        else:
+            use_dir = file_info["directories"]["profile"]["profiles"]
+
         file_info["files"]["feature_select_files"][feature_select_level] = pathlib.Path(
-            file_info["directories"]["profile"]["profiles"],
+            use_dir,
             f"{batch_id}_{feature_select_level}_normalized_feature_select.csv.gz",
         )
 
