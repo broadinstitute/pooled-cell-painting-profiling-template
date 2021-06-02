@@ -27,6 +27,11 @@ def parse_command_args(
         "--batch_id", help="a string indicating which batch to process", default=None
     )
     parser.add_argument(
+        "--split_step",
+        help="Which step in the recipe to consider splitting information",
+        default=None,
+    )
+    parser.add_argument(
         "--force", help="force overwriting of feature data", action="store_true"
     )
     args = parser.parse_args()
