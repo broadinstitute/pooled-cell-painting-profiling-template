@@ -2,10 +2,29 @@
 experiment:
   pipeline: Pooled Cell Painting
   project_tag: Periscope
-  batch: BATCH_ID
+  batches:
+    - BATCH_ID
   plates:
     - PLATE01
     - PLATE02
+  wells:
+    set1:
+      - Well1
+      - Well2
+      - Well3
+    set2:
+      - Well4
+      - Well5
+      - Well6
+  split:
+    qc:
+      batches: true
+      plates: true
+      wells: true
+    profile:
+      batches: true
+      plates: false
+      wells: true
   barcoding_cycles: 10
   sites_per_image_grid_side: 10
   control_barcode_ids:
@@ -13,11 +32,11 @@ experiment:
 ---
 directory_structure:
   input_data_dir: /Users/gway/work/projects/2018_11_20_Periscope_Calico/workspace/analysis
-  plate_id_folder: true
+  batch_id_folder: true
   output_data_dir: data/
   preprocess:
     base: 0.site-qc/
-    plate_id_folder: true
+    batch_id_folder: true
     spots: spots/
     paint: paint/
     data: data/
@@ -25,6 +44,6 @@ directory_structure:
     figures: figures/
   profile:
     base: 1.profiles/
-    plate_id_folder: true
+    batch_id_folder: true
     single_cell: single_cell/
     profiles: profiles/

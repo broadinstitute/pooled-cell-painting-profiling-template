@@ -7,7 +7,7 @@ options_config_default = pathlib.Path("config/options.yaml")
 
 
 def weld_pipeline(
-    plate_id,
+    batch_id,
     recipe_folder=recipe_default,
     experiment_config_file=experiment_config_default,
     options_config_file=options_config_default,
@@ -18,8 +18,8 @@ def weld_pipeline(
     """
 
     payload = [
-        "--plate_id",
-        str(plate_id),
+        "--batch_id",
+        str(batch_id),
         "--experiment_config_file",
         experiment_config_file,
         "--options_config_file",
@@ -40,9 +40,12 @@ def weld_pipeline(
         "4.image-and-segmentation-qc.py",
     ]
 
+    split_step = ["--split_step", "qc"]
     for script in preprocess_scripts:
         full_script = str(pathlib.Path(f"{preprocess_dir}/{script}"))
-        p = subprocess.Popen(["python", full_script] + payload, shell=False)
+        p = subprocess.Popen(
+            ["python", full_script] + payload + split_step, shell=False
+        )
         p.communicate()
 
     # Module 1 - Generate Profiles
@@ -55,7 +58,10 @@ def weld_pipeline(
         "3.feature-select.py",
     ]
 
+    split_step = ["--split_step", "profile"]
     for script in profile_scripts:
         full_script = str(pathlib.Path(f"{profile_dir}/{script}"))
-        p = subprocess.Popen(["python", full_script] + payload, shell=False)
+        p = subprocess.Popen(
+            ["python", full_script] + payload + split_step, shell=False
+        )
         p.communicate()
