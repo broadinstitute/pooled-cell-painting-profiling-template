@@ -2,41 +2,6 @@
 
 Below are steps required to initialize and perform data pipeline welding for your favorite batch of pooled cell painting data.
 
-## Step 0: Update your forked recipe (Optional)
-
-This is an optional (and potentially dangerous :warning:) step.
-Updating your fork may introduce unintended changes to your weld.
-For example, it is possible that new configuration options have been added, which also require a template update.
-Make sure the latest updates in the recipe align with expectations: https://github.com/broadinstitute/pooled-cp-profiling-recipe
-
-### Procedure:
-
-```bash
-git fetch upstream
-git checkout master
-git merge upstream/master
-git push
-```
-
-If you would like your recipe to include any updates that you have made:
-
-```bash
-git checkout UPDATED-BRANCH
-```
-
-or
-
-```bash
-git checkout <commit_hash>
-```
-
-### Result:
-
-Updates (or reverts) your recipe to include any desired changes.
-
-### Goal:
-
-1. Allows you to make changes to your recipe from dataset to dataset (or batch to batch).
 
 ## Step 1: Create a new repository **using this repository as a template**
 
@@ -139,3 +104,36 @@ python weld.py
 ### Goal:
 
 1.  Track the submodule (recipe) version with the current data repository.
+
+## Step 5: Commit most weld results to Github
+
+### Procedure:
+Depending on the size of your dataset, it may not be practical to commit all weld results to Github. Our team has decided to commit all summary figures and results but not the per-site paint or spots data to Github. You can tailor the following commit code to suit your data storage preferences.
+
+```bash
+# EDIT {BATCH} IN FOLLOWING CODE TO MATCH YOUR DATASET
+# Add, commit, and push the weld results
+git add data
+git add figures
+git add results
+git reset data/0.site-qc/{BATCH}/paint/
+git reset data/0.site-qc/{BATCH}/spots/
+git commit -m 'results from data weld'
+git push
+```
+### Result:
+Select results from the weld are commited to Github.
+
+## Step 6: Save all weld result to long term storage
+
+### Procedure:
+
+Our team uses AWS S3 for long term storage so this command will sync everything from the repo to S3. No size considerations are necessary for S3. To sync your data, make sure you have the proper credentials (and that they are set up on the machine you are using by first running `aws configure`).
+```bash
+# EDIT {REPO_FOLDER} AND {PROJECT} IN THE FOLLOWING CODE TO MATCH YOUR DATASET
+# Navigate to the directory above this repo and sync to S3
+cd ..
+aws s3 sync {REPO_FOLDER}/ s3://pooled-cell-painting/projects/{PROJECT}/workspace/software/{REPO_FOLDER}
+```
+### Result:
+All results from the weld are saved to long term storage in AWS S3.
