@@ -108,7 +108,10 @@ python weld.py
 ## Step 5: Commit most weld results to Github
 
 ### Procedure:
-Depending on the size of your dataset, it may not be practical to commit all weld results to Github. Our team has decided to commit all summary figures and results but not the per-site paint or spots data to Github. You can tailor the following commit code to suit your data storage preferences.
+
+Depending on the size of your dataset, it may not be practical to commit all weld results to Github.
+Our team has decided to commit all summary figures and results but not the per-site paint or spots data to Github.
+You can tailor the following commit code to suit your data storage preferences.
 
 ```bash
 # EDIT {BATCH} IN FOLLOWING CODE TO MATCH YOUR DATASET
@@ -120,9 +123,6 @@ git reset data/0.site-qc/{BATCH}/paint/
 git reset data/0.site-qc/{BATCH}/spots/
 git commit -m 'results from data weld'
 git push
-```
-### Result:
-Select results from the weld are commited to Github.
 
 ## Step 6: Save all weld result to long term storage
 
