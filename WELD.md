@@ -119,7 +119,7 @@ You can tailor the following commit code to suit your data storage preferences.
 git add data/0.site-qc/{BATCH}/data
 git add data/0.site-qc/{BATCH}/figures
 git add data/0.site-qc/{BATCH}/results
-git add data/1.profiles
+git add data/1.profiles/{BATCH}/profiles
 git commit -m 'results from data weld'
 git push
 ```
