@@ -116,24 +116,32 @@ You can tailor the following commit code to suit your data storage preferences.
 ```bash
 # EDIT {BATCH} IN FOLLOWING CODE TO MATCH YOUR DATASET
 # Add, commit, and push the weld results
-git add data
-git add figures
-git add results
-git reset data/0.site-qc/{BATCH}/paint/
-git reset data/0.site-qc/{BATCH}/spots/
+git add data/0.site-qc/{BATCH}/data
+git add data/0.site-qc/{BATCH}/figures
+git add data/0.site-qc/{BATCH}/results
+git add data/1.profiles
 git commit -m 'results from data weld'
 git push
+```
+### Result:
 
-## Step 6: Save all weld result to long term storage
+Commit select results from the weld to Github.
+
+## Step 6: Save all weld results to long-term storage
 
 ### Procedure:
 
-Our team uses AWS S3 for long term storage so this command will sync everything from the repo to S3. No size considerations are necessary for S3. To sync your data, make sure you have the proper credentials (and that they are set up on the machine you are using by first running `aws configure`).
+Our team uses AWS S3 for long term storage so this command will sync everything from the repo to S3.
+No size considerations are necessary for S3.
+To sync your data, make sure you have the proper credentials (and that they are set up on the machine you are using by first running `aws configure`).
+
 ```bash
 # EDIT {REPO_FOLDER} AND {PROJECT} IN THE FOLLOWING CODE TO MATCH YOUR DATASET
 # Navigate to the directory above this repo and sync to S3
 cd ..
 aws s3 sync {REPO_FOLDER}/ s3://pooled-cell-painting/projects/{PROJECT}/workspace/software/{REPO_FOLDER}
 ```
+
 ### Result:
-All results from the weld are saved to long term storage in AWS S3.
+
+Save all results from the weld to long-term storage in AWS S3.
