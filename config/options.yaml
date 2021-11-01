@@ -39,6 +39,7 @@ preprocess:
   process-spots:
     perform: true
     force_overwrite: true
+    allowed_skips: 10
     image_cols:
       full_info: "Metadata_site"
       well: "Metadata_Well"
