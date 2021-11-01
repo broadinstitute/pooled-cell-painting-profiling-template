@@ -1,6 +1,7 @@
 # Weld
 
 Below are steps required to initialize and perform data pipeline welding for your favorite batch of pooled cell painting data.
+Make sure that you have performed the steps in [SETUP.md](SETUP.md) before performing your weld.
 
 
 ## Step 1: Create a new repository **using this repository as a template**
