@@ -1,4 +1,4 @@
-# Documentation: Options Configuration
+# Documentation: options.yaml Configuration
 
 Detailed information on how to customize the `options.yaml` for each Pooled Cell Painting experiment.  
 
@@ -11,7 +11,7 @@ When there are multiple lines, the value is a list with string elements.)
 
 ## core:  
 
-`compartments:` *The cellular compartments identified as objects in the cell painting experiment.  
+`compartments:` *The cellular compartments identified as objects in the cell painting experiment.
 Default cell painting compartments are:  
 e.g.*  
     - Cells  
@@ -22,7 +22,8 @@ e.g.*
 `categorize_cell_quality:` *The cell categorization method you would like to use. The methods are described in cell_quality_utils.py in the Pooled Cell Painting Profiling Recipe.  
 e.g.* simple  
 *e.g.* simple_plus  
-`cell_filter:`*Select the categories of cells that you wish to use for analysis. Categories are defined in cell_quality_utils.py in the Pooled Cell Painting Profiling Recipe.
+`cell_filter:` *Select the categories of cells that you wish to use for analysis.
+Categories are defined in cell_quality_utils.py in the Pooled Cell Painting Profiling Recipe.
 Make sure that the options you set here are available in the categorize_cell_quality method that you set above in core config.  
 e.g.*  
     - Perfect  
@@ -53,7 +54,7 @@ e.g.*
 e.g.*  
     - Parent_Cells  
 
-`compression:` *Compression to use when creating .csv files. For more information and options, see Pandas DataFrame.to_csv documentation.
+`compression:` *Compression to use when creating .csv files. For more information and options, see Pandas DataFrame.to_csv documentation.  
 e.g.* gzip
 
 `float_format` *Decimal precision to use in writing output files. For more information and options, see Python string formatting documentation. Default* "%.5g" *keeps 5 decimal places.  
@@ -90,10 +91,14 @@ Set to* true *or* false.
 `force_overwrite:` *Do you want to overwrite any existing data?  
 Set to* true *or* false.  
 
+`allowed_skips:` *Number of sites you allow to be skipped because of an error during preprocessing before considering the step to have failed.  
+e.g.* 10
+
 `image_cols:` *The columns that contain the well, site, and plate labels for each image.*  
-`well:` *e.g.* Metadata_Well  
-`site:` *e.g.* Metadata_Site  
-`plate:` *e.g.* Metadata_Plate  
+`full_info:` *e.g.* "Metadata_site"  
+`well:` *e.g.* "Metadata_Well"  
+`site:` *e.g.* "Metadata_Site"  
+`plate:` *e.g.* "Metadata_Plate"  
 
 `barcode_cols:` *The column that contains the barcodes (or columns that contain the barcodes) assigned to a given spot.  
 e.g.*  
@@ -117,6 +122,9 @@ e.g.*
     - Barcode_BarcodeCalled  
     - Barcode_MatchedTo_ID
 
+`exact_match_reads_col:`  
+*e.g.* "exact_match_reads_per_cell"
+
 `process-cells:`  
 `perform:` *Do you want to perform 2.process-cells step?  
 Set to* true *or* false.  
@@ -139,6 +147,7 @@ You will need to set a column name for each compartment set in* `core: compartme
 The column names listed must also exist in the data for the compartment listed in* `linking_compartment`*.*  
 `cells:` *e.g.* Metadata_Cytoplasm_Parent_Cells  
 `nuclei:` *e.g.* Metadata_Cytoplasm_Parent_Nuclei  
+
 `metadata_merge_columns:`  
 *These are the columns that are used to link foci data to compartment data.*  
 `foci_cols:` *The columns that describe the image number and the cell number in the foci data.  
@@ -149,6 +158,7 @@ e.g.*
 e.g.*  
     - Metadata_Cells_ImageNumber  
     - Metadata_Cells_ObjectNumber  
+
 `foci_site_col:`*The column in the foci data that contains the site number.  
 e.g.* Metadata_Foci_site
 

@@ -18,13 +18,13 @@ experiment:
       - Well6
   split:
     qc:
-      batches: true
-      plates: true
-      wells: true
-    profile:
-      batches: true
+      batches: false
       plates: false
-      wells: true
+      wells: false
+    profile:
+      batches: false
+      plates: false
+      wells: false
   barcoding_cycles: 10
   sites_per_image_grid_side: 10
   control_barcode_ids:
