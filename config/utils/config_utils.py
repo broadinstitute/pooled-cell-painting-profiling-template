@@ -166,14 +166,36 @@ def process_configuration(
 
     # Assert all compartment files are present in each site folder before populating
     compartments = [f"{x}.csv" for x in file_info["options"]["core"]["compartments"]]
-    sites = [
-        x
-        for x in sites
-        if all(
-            compart_file in os.listdir(pathlib.Path(input_analysis_dir / x))
-            for compart_file in compartments
-        )
-    ]
+    sitelist = []
+    incomplete_sites = []
+    errored_sites = []
+    for x in sites:
+        try:
+            if all(
+                compart_file in os.listdir(pathlib.Path(input_analysis_dir / x))
+                for compart_file in compartments
+            ):
+                sitelist.append(x)
+            else:
+                incomplete_sites.append(x)
+        except:
+            print(f"Errored confirming all comparment files exist for {x}")
+            try:
+                if all(
+                    compart_file in os.listdir(pathlib.Path(input_analysis_dir / x))
+                    for compart_file in compartments
+                ):
+                    sitelist.append(x)
+                else:
+                    incomplete_sites.append(x)
+            except:
+                print(
+                    f"Errored second try confirming all comparment files exist for {x}. Skipping."
+                )
+                errored_sites.append(x)
+                continue
+            continue
+    sites = sitelist
 
     file_info["options"]["example_site"] = sites[0]
 
@@ -230,7 +252,7 @@ def process_configuration(
             f"{batch_id}_{feature_select_level}_normalized_feature_select.csv.gz",
         )
 
-    return file_info
+    return file_info, incomplete_sites, errored_sites
 
 
 def get_batches(config=experiment_config_default):
