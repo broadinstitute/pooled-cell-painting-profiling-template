@@ -39,6 +39,7 @@ preprocess:
   process-spots:
     perform: true
     force_overwrite: true
+    allowed_skips: 10
     image_cols:
       full_info: "Metadata_site"
       well: "Metadata_Well"
@@ -96,6 +97,7 @@ profile:
     force_overwrite: true
     prefilter_features: true
     output_one_single_cell_file_only: true
+    allowed_skips: 10
     cell_quality_column: Metadata_Foci_Cell_Quality
     sanitize_gene_col: true
     merge_columns:
