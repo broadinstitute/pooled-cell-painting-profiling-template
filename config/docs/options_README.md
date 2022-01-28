@@ -243,6 +243,8 @@ e.g.* median
 Set to* true *or* false.  
 `force_overwrite:` *Do you want to overwrite any existing data?  
 Set to* true *or* false.  
+`output_single_cell_by_guide:` *Do you want to create an additional output of normalized single cell profiles saved on a per-guide basis?
+Set to* true *or* false.  
 `method:` *String indicating how the dataframe will be normalized. e.g.* standardize  
 `levels:` *This step "normalizes" the features to exist on the same scale and range. The levels argument asks at which "profile" level is the normalization performed. e.g.*  
     - gene  

@@ -123,6 +123,7 @@ profile:
   normalize:
     perform: true
     force_overwrite: true
+    output_single_cell_by_guide: true
     method: standardize
     levels:
       - gene
