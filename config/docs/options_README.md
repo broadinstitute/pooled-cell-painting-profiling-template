@@ -118,19 +118,20 @@ e.g.*
 e.g.*  
     - Barcode_MatchedTo_Score  
 
-`foci_cols:`*The columns that contain the top match for barcode and corresponding gene.  
+`foci_cols:`*The columns that contain the top match for barcode (listed first) and corresponding gene.  
 e.g.*  
     - Barcode_BarcodeCalled  
-    - Barcode_MatchedTo_ID
-`foci_cols:`*Any barcodes that you want to exclude from any downstream analysis.
+    - Barcode_MatchedTo_ID  
+
+`exact_match_reads_col:`  
+*e.g.* "exact_match_reads_per_cell"
+
+`drop_barcodes:`*Any barcodes that you want to exclude from any downstream analysis.
 Otherwise, enter false.
 e.g.*  
     - AAAATTTTCCCCGGGG  
     - ACTGACTGACTGACTG  
 *e.g.* false
-
-`exact_match_reads_col:`  
-*e.g.* "exact_match_reads_per_cell"
 
 `process-cells:`  
 `perform:` *Do you want to perform 2.process-cells step?  
