@@ -58,6 +58,8 @@ preprocess:
       - Barcode_BarcodeCalled
       - Barcode_MatchedTo_ID
     exact_match_reads_col: "exact_match_reads_per_cell"
+    drop_barcodes:
+      - AAAATTTTCCCCGGGG
   process-cells:
     perform: true
     force_overwrite: true

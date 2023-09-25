@@ -88,6 +88,23 @@ def process_additional_options(config=options_config_default):
             "#A157DB",
             "#776244",
         ]
+    elif config["core"]["cell_quality"]["categorize_cell_quality"] == "salvage":
+        config["core"]["cell_quality"]["cell_category_order"] = [
+            "Perfect",
+            "Great",
+            "Salvage-High",
+            "Salvage-Low",
+            "Bad",
+            "Empty",
+        ]
+        config["core"]["cell_quality"]["cell_category_colors"] = [
+            "#DB5F57",
+            "#91DB57",
+            "#57D3DB",
+            "#556FD4",
+            "#A157DB",
+            "#776244",
+        ]
 
     if config["core"]["compression"] == "gzip":
         config["core"]["compression"] = {"method": "gzip", "mtime": 1}

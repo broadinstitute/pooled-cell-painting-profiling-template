@@ -22,6 +22,7 @@ e.g.*
 `categorize_cell_quality:` *The cell categorization method you would like to use. The methods are described in cell_quality_utils.py in the Pooled Cell Painting Profiling Recipe.  
 e.g.* simple  
 *e.g.* simple_plus  
+*e.g.* salvage  
 `cell_filter:` *Select the categories of cells that you wish to use for analysis.
 Categories are defined in cell_quality_utils.py in the Pooled Cell Painting Profiling Recipe.
 Make sure that the options you set here are available in the categorize_cell_quality method that you set above in core config.  
@@ -121,6 +122,12 @@ e.g.*
 e.g.*  
     - Barcode_BarcodeCalled  
     - Barcode_MatchedTo_ID
+`foci_cols:`*Any barcodes that you want to exclude from any downstream analysis.
+Otherwise, enter false.
+e.g.*  
+    - AAAATTTTCCCCGGGG  
+    - ACTGACTGACTGACTG  
+*e.g.* false
 
 `exact_match_reads_col:`  
 *e.g.* "exact_match_reads_per_cell"
